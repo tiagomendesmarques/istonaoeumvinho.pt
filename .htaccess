@@ -3,6 +3,12 @@
   RewriteEngine On
   RewriteCond %{HTTP_HOST} ^www\.istonaoeumvinho\.pt$ [NC]
   RewriteRule ^ https://istonaoeumvinho.pt%{REQUEST_URI} [R=301,L]
+
+  # Modo manutenção (MANUTENCAO=1): as páginas HTML passam pela palavra-passe em manutencao.php
+  RewriteCond %{ENV:MANUTENCAO} =1
+  RewriteRule ^(index\.html)?$ manutencao.php?__p=index.html [L,QSA]
+  RewriteCond %{ENV:MANUTENCAO} =1
+  RewriteRule ^(politica-privacidade\.html)$ manutencao.php?__p=$1 [L,QSA]
 </IfModule>
 
 # Cache

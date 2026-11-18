@@ -3,6 +3,9 @@ FROM php:8.3-apache
 
 # Cloud Run indica a porta em $PORT (8080 por omissão)
 ENV PORT=8080
+# Modo manutenção (o deploy define 1 ou 0); o PassEnv deixa o .htaccess ler a variável
+ENV MANUTENCAO=0
+RUN printf 'PassEnv MANUTENCAO\n' > /etc/apache2/conf-available/passenv.conf && a2enconf passenv
 RUN sed -ri 's/^Listen 80$/Listen ${PORT}/' /etc/apache2/ports.conf \
  && sed -ri 's/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/' /etc/apache2/sites-available/000-default.conf \
  && sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf \

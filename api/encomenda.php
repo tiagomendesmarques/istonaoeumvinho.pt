@@ -20,6 +20,10 @@ function responder(int $status, array $dados): void {
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') responder(405, ['ok' => false, 'erro' => 'Método não permitido.']);
 
+// Em manutenção só aceita encomendas de quem entrou com a palavra-passe
+require __DIR__ . '/gate.php';
+if (!gate_ok()) responder(403, ['ok' => false, 'erro' => 'O site está em manutenção.']);
+
 // Origem
 // Origem: aceita o próprio domínio onde o site corre (ex.: *.run.app) e os da lista
 $origem = $_SERVER['HTTP_ORIGIN'] ?? '';

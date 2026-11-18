@@ -32,6 +32,9 @@ env:
   MAIL_TO: geral@istonaoeumvinho.pt
   PRECO: "99"
 
+  # --- Manutenção: "1" = site fechado com palavra-passe (segredo "site-password"); "0" = site aberto ---
+  MANUTENCAO: "1"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -76,8 +79,10 @@ jobs:
             SMTP_USER=${{ env.SMTP_USER }}
             MAIL_TO=${{ env.MAIL_TO }}
             PRECO=${{ env.PRECO }}
+            MANUTENCAO=${{ env.MANUTENCAO }}
           secrets: |
             SMTP_PASSWORD=smtp-password:latest
+            SITE_PASSWORD=site-password:latest
 
       - name: Verificar se o site responde
         run: |

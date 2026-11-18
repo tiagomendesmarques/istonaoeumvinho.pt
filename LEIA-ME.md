@@ -40,6 +40,17 @@ projeto `istonaoeumvinho`). Também se pode correr à mão em GitHub → Actions
   `gcloud secrets versions add smtp-password --data-file=ficheiro.txt --project istonaoeumvinho`
   e fazer um novo deploy.
 
+## Modo manutenção (wall com palavra-passe)
+
+Com `MANUTENCAO: "1"` no `.github/workflows/deploy.yml`, as páginas mostram a wall "O site está a fermentar"
+(`manutencao.php`) até se pôr a palavra-passe. Quem acerta fica com acesso 30 dias (cookie assinado).
+A API de encomendas também recusa pedidos sem esse acesso.
+
+- A palavra-passe está no Secret Manager (segredo `site-password`), não no código. Para a mudar:
+  `gcloud secrets versions add site-password --data-file=ficheiro.txt --project istonaoeumvinho` e fazer deploy
+  (os acessos antigos deixam de valer).
+- **Para abrir o site ao público:** mudar para `MANUTENCAO: "0"` no workflow e fazer push.
+
 ## Cache
 
 Os HTML carregam o CSS/JS com `?v=__VERSION__`. No build, o Dockerfile troca `__VERSION__` pelos
