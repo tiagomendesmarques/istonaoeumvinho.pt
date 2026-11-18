@@ -40,6 +40,13 @@ projeto `istonaoeumvinho`). Também se pode correr à mão em GitHub → Actions
   `gcloud secrets versions add smtp-password --data-file=ficheiro.txt --project istonaoeumvinho`
   e fazer um novo deploy.
 
+## Cache
+
+Os HTML carregam o CSS/JS com `?v=__VERSION__`. No build, o Dockerfile troca `__VERSION__` pelos
+8 primeiros caracteres do commit, por isso cada deploy obriga o browser a ir buscar os ficheiros novos.
+O `.htaccess` da raiz define: HTML sem cache (confirma sempre), CSS/JS 1 ano, imagens e fontes 1 semana.
+Ao acrescentar um novo CSS/JS a um HTML, pôr também `?v=__VERSION__` no endereço.
+
 ## No dia a dia
 
 Atualizar `restam` em `config.js`. Com `0`, o formulário desaparece.

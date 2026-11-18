@@ -15,4 +15,8 @@ RUN sed -ri 's/^Listen 80$/Listen ${PORT}/' /etc/apache2/ports.conf \
 
 COPY --chown=www-data:www-data . /var/www/html/
 
+# Versão dos ficheiros (cache busting): troca __VERSION__ nos HTML pelo commit do deploy
+ARG VERSION=dev
+RUN find /var/www/html -name '*.html' -exec sed -i "s/__VERSION__/${VERSION}/g" {} +
+
 EXPOSE 8080
