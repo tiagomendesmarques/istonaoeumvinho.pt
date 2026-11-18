@@ -22,5 +22,5 @@ window.SITE = {
 
   // Google Analytics 4 (ID de medição "G-XXXXXXXXXX"). Vazio = sem Analytics e sem banner de cookies.
   // Só carrega depois de o visitante aceitar os cookies.
-  googleAnalytics: ""
+  googleAnalytics: "G-RLDHTE2N8J"
 };
