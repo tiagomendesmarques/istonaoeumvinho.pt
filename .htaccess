@@ -1,3 +1,10 @@
+# www.istonaoeumvinho.pt -> istonaoeumvinho.pt
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.istonaoeumvinho\.pt$ [NC]
+  RewriteRule ^ https://istonaoeumvinho.pt%{REQUEST_URI} [R=301,L]
+</IfModule>
+
 # Cache
 # - HTML: o browser confirma sempre se há versão nova (assim apanha os novos ?v=)
 # - CSS/JS: levam ?v=<commit> no endereço, por isso podem ficar em cache 1 ano
