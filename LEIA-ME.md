@@ -51,6 +51,14 @@ A API de encomendas também recusa pedidos sem esse acesso.
   (os acessos antigos deixam de valer).
 - **Para abrir o site ao público:** mudar para `MANUTENCAO: "0"` no workflow e fazer push.
 
+## Google Analytics
+
+Pôr o ID de medição GA4 (`G-XXXXXXXXXX`) em `config.js` → `googleAnalytics` e fazer push.
+O GA4 só carrega depois de o visitante clicar "Aceitar" no banner de cookies (`assets/js/analytics.js`);
+quem recusa não é medido e os cookies `_ga` são apagados. O link "Cookies" no rodapé reabre o banner.
+Eventos enviados: `clique_encomendar` (menu/hero) e `generate_lead` (encomenda enviada, com quantidade e valor).
+Na consola do GA4 convém marcar `generate_lead` como evento-chave.
+
 ## Cache
 
 Os HTML carregam o CSS/JS com `?v=__VERSION__`. No build, o Dockerfile troca `__VERSION__` pelos

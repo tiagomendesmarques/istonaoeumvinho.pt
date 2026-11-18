@@ -10,10 +10,19 @@
   var gate = $("idade");
   var ok = false;
   try { ok = localStorage.getItem("idade-ok") === "1"; } catch (e) {}
+  var A = window.Analytics || { iniciar: function () {}, evento: function () {} };
   function abrirSite() {
     gate.hidden = true;
     document.body.classList.remove("bloqueado");
+    A.iniciar(); // banner de cookies só depois da entrada 18+
   }
+
+  // Cliques nos botões de encomendar (menu, hero)
+  document.querySelectorAll('a[href="#encomendar"]').forEach(function (a) {
+    a.addEventListener("click", function () {
+      A.evento("clique_encomendar", { local: a.closest(".nav") ? "menu" : "hero" });
+    });
+  });
   if (ok) abrirSite(); else $("idade-sim").focus();
   $("idade-sim").addEventListener("click", function () {
     try { localStorage.setItem("idade-ok", "1"); } catch (e) {}
@@ -126,6 +135,10 @@
   });
 
   function sucesso() {
+    var n = parseInt(qtd.value, 10);
+    var ev = { quantidade: qtd.value, entrega: form.entrega.value, currency: "EUR" };
+    if (typeof S.preco === "number" && !isNaN(n)) ev.value = S.preco * n;
+    A.evento("generate_lead", ev);
     form.hidden = true;
     var s = $("sucesso");
     s.hidden = false;

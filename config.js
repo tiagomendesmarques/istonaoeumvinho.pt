@@ -18,5 +18,9 @@ window.SITE = {
   // Email de recurso mostrado se o envio falhar.
   emailEncomendas: "geral@istonaoeumvinho.pt",
 
-  instagram: "https://www.instagram.com/istonaoeumvinho/"
+  instagram: "https://www.instagram.com/istonaoeumvinho/",
+
+  // Google Analytics 4 (ID de medição "G-XXXXXXXXXX"). Vazio = sem Analytics e sem banner de cookies.
+  // Só carrega depois de o visitante aceitar os cookies.
+  googleAnalytics: ""
 };
