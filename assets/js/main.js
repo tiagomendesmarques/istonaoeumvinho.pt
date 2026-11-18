@@ -56,6 +56,28 @@
     io.observe(num);
   }
 
+  /* Parallax da textura do vinho: a imagem desce mais devagar do que a página e aproxima-se ligeiramente */
+  var tex = $("vinho-textura");
+  if (tex && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var sec = tex.closest(".vinho");
+    var pedido = false;
+    var mover = function () {
+      pedido = false;
+      var r = sec.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      var p = (vh - r.top) / (vh + r.height);            // 0 quando entra por baixo, 1 quando sai por cima
+      p = Math.max(0, Math.min(1, p));
+      var y = (p - 0.5) * r.height * 0.55;                // até ±27% da altura da secção
+      var s = 1.12 - p * 0.08;                            // 1.12 -> 1.04
+      tex.style.transform = "translate3d(0," + y.toFixed(1) + "px,0) scale(" + s.toFixed(3) + ")";
+    };
+    var agendar = function () { if (!pedido) { pedido = true; requestAnimationFrame(mover); } };
+    window.addEventListener("scroll", agendar, { passive: true });
+    window.addEventListener("resize", agendar);
+    mover();
+  }
+
   var form = $("form");
   if (restam <= 0) {
     $("encomenda-txt").textContent = "Acabou mesmo. Este foi o primeiro duma série.";

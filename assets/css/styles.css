@@ -79,14 +79,14 @@ section[id]{scroll-margin-top:var(--header-h)}
 .historia-logos{width:min(100%,440px);height:auto;margin-top:8px}
 
 /* O vinho */
-.vinho{color:var(--branco);background-color:var(--vinho);
-  background-image:
-    radial-gradient(120% 90% at 18% 30%,rgba(150,20,24,.55),transparent 60%),
-    radial-gradient(80% 120% at 85% 70%,rgba(120,10,16,.6),transparent 55%),
-    radial-gradient(60% 50% at 55% 20%,rgba(200,40,40,.18),transparent 70%),
-    linear-gradient(115deg,#3d0507 0%,#6d0c10 45%,#4a0609 70%,#2c0305 100%);
-  border-block:1px solid var(--preto)}
-.vinho .wrap{padding-block:clamp(48px,6vw,80px)}
+/* Fundo: textura do vinho (desce mais devagar que a página = parallax) + camada de cor por cima, como no rótulo */
+.vinho{--vinho-cor:#843C3D;--vinho-mistura:color;--vinho-opacidade:.55;position:relative;isolation:isolate;overflow:hidden;color:var(--branco);background:#3A0507;border-block:1px solid var(--preto)}
+.vinho-fundo{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.vinho-textura{position:absolute;left:0;right:0;top:-35%;height:170%;background:#3A0507 url("../img/vinho-textura.jpg") center/cover no-repeat;transform:translate3d(0,0,0) scale(1.08);will-change:transform}
+.vinho-tinta{position:absolute;inset:0;background:var(--vinho-cor);opacity:.25}
+.vinho-fundo::after{content:"";position:absolute;inset:0;background:var(--vinho-cor);mix-blend-mode:var(--vinho-mistura);opacity:var(--vinho-opacidade)}
+.vinho-fundo::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,0,2,.45) 0%,rgba(20,0,2,0) 55%)}
+.vinho .wrap{position:relative;padding-block:clamp(64px,9vw,128px)}
 .vinho .label{color:var(--vermelho)}
 .ficha{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,40px) clamp(20px,3vw,40px)}
 .ficha dt{font:500 10px/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--vermelho);margin-bottom:6px}
