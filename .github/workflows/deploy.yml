@@ -88,4 +88,9 @@ jobs:
         run: |
           URL="${{ steps.deploy.outputs.url }}"
           echo "Site publicado em: $URL"
-          curl -fsS -o /dev/null -w "HTTP %{http_code}\n" "$URL/"
+          # Em manutenção a página inicial responde 503 (wall); aberto responde 200
+          ESPERADO=$([ "$MANUTENCAO" = "1" ] && echo 503 || echo 200)
+          CODIGO=$(curl -sS -o /dev/null -w "%{http_code}" "$URL/")
+          echo "Página inicial: HTTP $CODIGO (esperado $ESPERADO)"
+          [ "$CODIGO" = "$ESPERADO" ]
+          curl -fsS -o /dev/null "$URL/assets/css/styles.css"
