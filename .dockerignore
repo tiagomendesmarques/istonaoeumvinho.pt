@@ -1,0 +1,9 @@
+.git
+.github
+.claude
+.gitignore
+.dockerignore
+Dockerfile
+LEIA-ME.md
+README.md
+api/dados

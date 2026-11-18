@@ -1,0 +1,8 @@
+# Só o encomenda.php é público
+<FilesMatch "\.(php|csv|log)$">
+  Require all denied
+</FilesMatch>
+<Files "encomenda.php">
+  Require all granted
+</Files>
+Options -Indexes
