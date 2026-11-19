@@ -59,7 +59,6 @@ $d = [
     'quantidade'  => $f('quantidade', 40),
     'entrega'     => $f('entrega', 40),
     'morada'      => $f('morada', 300),
-    'nif'         => $f('nif', 9),
     'mensagem'    => $f('mensagem', 200),
     'maioridade'  => $f('maioridade', 3),
     'privacidade' => $f('privacidade', 3),
@@ -74,7 +73,6 @@ if (strlen(preg_replace('/\D/', '', $d['telemovel'])) < 9) $erros[] = 'telemóve
 if (!in_array($d['quantidade'], $quantidades, true)) $erros[] = 'quantidade';
 if (!in_array($d['entrega'], $entregas, true)) $erros[] = 'entrega';
 if ($d['entrega'] === 'Envio para morada' && mb_strlen($d['morada']) < 5) $erros[] = 'morada';
-if ($d['nif'] !== '' && !preg_match('/^\d{9}$/', $d['nif'])) $erros[] = 'NIF';
 if ($d['maioridade'] !== 'sim') $erros[] = 'maioridade';
 if ($d['privacidade'] !== 'sim') $erros[] = 'privacidade';
 if ($erros) responder(422, ['ok' => false, 'erro' => 'Verifica: ' . implode(', ', $erros) . '.']);
@@ -97,7 +95,6 @@ $linhas = [
     'Garrafas'   => $d['quantidade'],
     'Entrega'    => $d['entrega'],
     'Morada'     => $d['morada'] ?: '—',
-    'NIF'        => $d['nif'] ?: '—',
     'Mensagem'   => $d['mensagem'] ?: '—',
     'Total'      => $totalTxt,
     'Data'       => date('Y-m-d H:i'),

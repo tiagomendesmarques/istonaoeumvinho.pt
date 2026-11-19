@@ -7,10 +7,10 @@ window.SITE = {
   preco: 99,
 
   // Garrafas que restam. Com 0, o formulário desaparece e aparece "Acabou mesmo."
-  restam: 699,
+  restam: 549,
 
   // Total da edição.
-  total: 700,
+  total: 550,
 
   // Para onde o formulário envia (script PHP que manda os emails por SMTP).
   formEndpoint: "api/encomenda.php",

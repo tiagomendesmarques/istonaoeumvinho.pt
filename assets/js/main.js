@@ -31,7 +31,7 @@
   $("idade-nao").addEventListener("click", function () { $("idade-nao-msg").hidden = false; });
 
   /* ---------- Configuração ---------- */
-  var total = typeof S.total === "number" ? S.total : 700;
+  var total = typeof S.total === "number" ? S.total : 550;
   var restam = typeof S.restam === "number" ? S.restam : total;
   document.querySelectorAll("[data-total]").forEach(function (el) { el.textContent = total; });
   if (S.instagram) $("link-instagram").href = S.instagram;
@@ -56,13 +56,14 @@
     io.observe(num);
   }
 
-  /* Cabeçalho escondido no topo, para não aparecerem dois logos: entra quando o logo grande sai do ecrã */
+  /* Menu sempre visível; o logo pequeno só aparece quando o logo grande sai do ecrã, para não haver dois logos */
   var header = document.querySelector(".header");
   var logoGrande = document.querySelector(".hero-logo");
   if (header && logoGrande && "IntersectionObserver" in window) {
-    header.style.transition = "none"; // esconde logo à entrada, sem animação
+    var logoPeq = header.querySelector(".header-logo");
+    logoPeq.style.transition = "none"; // esconde à entrada, sem animação
     header.classList.add("header-auto");
-    requestAnimationFrame(function () { requestAnimationFrame(function () { header.style.transition = ""; }); });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { logoPeq.style.transition = ""; }); });
     new IntersectionObserver(function (entries) {
       var e = entries[0];
       header.classList.toggle("visivel", !e.isIntersecting && e.boundingClientRect.top < 0);
@@ -143,8 +144,6 @@
     v(f.email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.value.trim()) ? "" : "Este email não parece certo.");
     v(f.telemovel, f.telemovel.value.replace(/\D/g, "").length >= 9 ? "" : "Falta o teu telemóvel.");
     v(f.morada, !envio() || f.morada.value.trim().length >= 5 ? "" : "Falta a morada de entrega.");
-    var nif = f.nif.value.trim();
-    v(f.nif, !nif || /^\d{9}$/.test(nif) ? "" : "O NIF tem 9 algarismos.");
     v(f.maioridade, f.maioridade.checked ? "" : "x");
     v(f.privacidade, f.privacidade.checked ? "" : "x");
 
