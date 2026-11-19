@@ -59,6 +59,7 @@ section[id]{scroll-margin-top:var(--header-h)}
 .nav .nav-cta:hover{text-decoration:none;background:var(--vermelho)}
 
 /* Hero */
+.hero{min-height:100vh;min-height:100svh} /* a foto só começa abaixo da dobra */
 .hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,300px);gap:40px;align-items:end;padding-block:clamp(24px,2.4vw,36px) clamp(40px,6vw,72px)}
 .hero-logo img{width:min(100%,780px);height:auto}
 .hero-side{display:flex;flex-direction:column;gap:22px;font-family:var(--serif);text-transform:uppercase;padding-bottom:4px}
