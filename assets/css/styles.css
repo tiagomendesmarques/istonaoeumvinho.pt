@@ -81,6 +81,14 @@ section[id]{scroll-margin-top:var(--header-h)}
 .lead{font-family:var(--serif);font-size:clamp(26px,2.9vw,44px);line-height:1.12}
 .sub{font-family:var(--serif);font-size:clamp(19px,1.9vw,28px);line-height:1.18}
 .historia-logos{width:min(100%,440px);height:auto;margin-top:8px}
+.historia-logos img{display:block;width:100%;height:auto}
+/* Três logótipos num só SVG: uma zona de link por cima de cada um (Honrado, Catarina Roleta, marcAsério) */
+.parceiros{position:relative;display:inline-block;line-height:0}
+.parceiros a{position:absolute;top:0;bottom:0}
+.parceiros a:nth-of-type(1){left:0;width:30.84%}
+.parceiros a:nth-of-type(2){left:30.84%;width:32.22%}
+.parceiros a:nth-of-type(3){left:63.06%;right:0}
+.parceiros a:focus-visible{outline:2px solid currentColor;outline-offset:2px}
 
 /* O vinho */
 /* Fundo: textura do vinho (desce mais devagar que a página = parallax) + camada de cor por cima, como no rótulo */
