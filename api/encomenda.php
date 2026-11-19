@@ -151,8 +151,8 @@ if (!empty($cfg['confirmacao_cliente'])) {
         if ($d['entrega'] === 'Recolha em Lisboa') {
             $recolhaHtml = '<p style="margin:24px 0 0;font:16px/1.5 Georgia,serif;color:#0B0B0B"><b>Onde levantar</b><br>'
                 . 'marcAsério<br>R. Fernando Namora 4, 6º D<br>2675-487 Odivelas<br>'
-                . 'Das 9h às 12h e das 14h às 18h<br>969 420 907</p>';
-            $recolhaTxt = "\nOnde levantar:\nmarcAsério\nR. Fernando Namora 4, 6º D\n2675-487 Odivelas\nDas 9h às 12h e das 14h às 18h\n969 420 907\n";
+                . 'Dias úteis, das 9h às 12h e das 14h às 18h<br>969 420 907</p>';
+            $recolhaTxt = "\nOnde levantar:\nmarcAsério\nR. Fernando Namora 4, 6º D\n2675-487 Odivelas\nDias úteis, das 9h às 12h e das 14h às 18h\n969 420 907\n";
         }
         $html = moldura('Recebido.', $intro . tabelaHtml($resumo, $e) . $recolhaHtml
             . '<p style="margin:24px 0 0;font:16px Georgia,serif;color:#0B0B0B">Obrigado por entrares nesta brincadeira.</p>', $e);
