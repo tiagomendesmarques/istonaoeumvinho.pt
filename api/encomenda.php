@@ -146,7 +146,7 @@ if (!empty($cfg['confirmacao_cliente'])) {
     try {
         $resumo = $linhas;
         unset($resumo['Data']);
-        $intro = '<p style="margin:0 0 20px;font:16px/1.5 Georgia,serif;color:#0B0B0B">Olá ' . $e(explode(' ', $d['nome'])[0]) . ',<br>recebemos o teu pedido. Respondemos até amanhã com a confirmação, o pagamento e a entrega. Não pagas nada agora.</p>';
+        $intro = '<p style="margin:0 0 20px;font:16px/1.5 Georgia,serif;color:#0B0B0B">Olá ' . $e(explode(' ', $d['nome'])[0]) . ',<br>recebemos o teu pedido. Respondemos até amanhã, para este email, com a confirmação, as condições de pagamento e a entrega.</p>';
         $recolhaHtml = $recolhaTxt = '';
         if ($d['entrega'] === 'Recolha em Lisboa') {
             $recolhaHtml = '<p style="margin:24px 0 0;font:16px/1.5 Georgia,serif;color:#0B0B0B"><b>Onde levantar</b><br>'
