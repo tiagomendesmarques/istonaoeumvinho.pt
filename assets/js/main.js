@@ -56,6 +56,19 @@
     io.observe(num);
   }
 
+  /* Cabeçalho escondido no topo, para não aparecerem dois logos: entra quando o logo grande sai do ecrã */
+  var header = document.querySelector(".header");
+  var logoGrande = document.querySelector(".hero-logo");
+  if (header && logoGrande && "IntersectionObserver" in window) {
+    header.style.transition = "none"; // esconde logo à entrada, sem animação
+    header.classList.add("header-auto");
+    requestAnimationFrame(function () { requestAnimationFrame(function () { header.style.transition = ""; }); });
+    new IntersectionObserver(function (entries) {
+      var e = entries[0];
+      header.classList.toggle("visivel", !e.isIntersecting && e.boundingClientRect.top < 0);
+    }, { rootMargin: "-" + header.offsetHeight + "px 0px 0px 0px" }).observe(logoGrande);
+  }
+
   /* Parallax da textura do vinho: a imagem desce mais devagar do que a página e aproxima-se ligeiramente */
   var tex = $("vinho-textura");
   if (tex && !matchMedia("(prefers-reduced-motion: reduce)").matches) {

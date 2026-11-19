@@ -48,6 +48,10 @@ section[id]{scroll-margin-top:var(--header-h)}
 .header{position:sticky;top:0;z-index:50;background:var(--branco);border-bottom:1px solid var(--preto)}
 .header-in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:var(--header-h)}
 .header-logo img{height:24px;width:auto}
+/* Na página inicial (com JS) o cabeçalho só entra depois de o logo grande sair do ecrã */
+.header.header-auto{position:fixed;left:0;right:0;transform:translateY(-101%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.header.header-auto.visivel,.header.header-auto:focus-within{transform:none}
+@media (prefers-reduced-motion:reduce){.header.header-auto{transition:none}}
 .nav{display:flex;align-items:center;gap:clamp(12px,2vw,24px);font:500 11px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase}
 .nav a{text-decoration:none;padding:6px 0}
 .nav a:hover{text-decoration:underline;text-underline-offset:4px}
