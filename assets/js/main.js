@@ -119,6 +119,7 @@
   }
   function atualizarEntrega() {
     campoMorada.hidden = !envio();
+    $("info-recolha").hidden = envio();
     form.morada.required = envio();
     atualizarTotal();
   }

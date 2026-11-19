@@ -141,6 +141,10 @@ section[id]{scroll-margin-top:var(--header-h)}
 .check.invalid input{border-color:#FF8A80}
 .check a{text-underline-offset:3px}
 
+.recolha{border:1px solid #6E6E6E;padding:16px 18px;display:flex;flex-direction:column;gap:10px;font:400 14px/1.5 var(--sans)}
+.recolha[hidden]{display:none}
+.recolha .recolha-titulo{font:500 9.5px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.recolha a{text-underline-offset:3px}
 .total{font-family:var(--serif);font-size:26px;line-height:1.1}
 .form-msg{font-size:14px;min-height:0}
 .form-msg:empty{display:none}

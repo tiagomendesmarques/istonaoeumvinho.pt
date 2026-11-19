@@ -150,10 +150,17 @@ if (!empty($cfg['confirmacao_cliente'])) {
         $resumo = $linhas;
         unset($resumo['Data']);
         $intro = '<p style="margin:0 0 20px;font:16px/1.5 Georgia,serif;color:#0B0B0B">Olá ' . $e(explode(' ', $d['nome'])[0]) . ',<br>recebemos o teu pedido. Respondemos até amanhã com a confirmação, o pagamento e a entrega. Não pagas nada agora.</p>';
-        $html = moldura('Recebido.', $intro . tabelaHtml($resumo, $e)
+        $recolhaHtml = $recolhaTxt = '';
+        if ($d['entrega'] === 'Recolha em Lisboa') {
+            $recolhaHtml = '<p style="margin:24px 0 0;font:16px/1.5 Georgia,serif;color:#0B0B0B"><b>Onde levantar</b><br>'
+                . 'marcAsério<br>R. Fernando Namora 4, 6º D<br>2675-487 Odivelas<br>'
+                . 'Das 9h às 12h e das 14h às 18h<br>969 420 907</p>';
+            $recolhaTxt = "\nOnde levantar:\nmarcAsério\nR. Fernando Namora 4, 6º D\n2675-487 Odivelas\nDas 9h às 12h e das 14h às 18h\n969 420 907\n";
+        }
+        $html = moldura('Recebido.', $intro . tabelaHtml($resumo, $e) . $recolhaHtml
             . '<p style="margin:24px 0 0;font:16px Georgia,serif;color:#0B0B0B">Obrigado por entrares nesta brincadeira.</p>', $e);
         $txt = "Olá {$d['nome']},\n\nRecebemos o teu pedido. Respondemos até amanhã com a confirmação, o pagamento e a entrega.\n\n"
-            . tabelaTxt($resumo) . "\nObrigado por entrares nesta brincadeira.\nIsto não é um Vinho";
+            . tabelaTxt($resumo) . $recolhaTxt . "\nObrigado por entrares nesta brincadeira.\nIsto não é um Vinho";
         (new Smtp($cfg['smtp']))->send($cfg['from_email'], $cfg['from_name'], $d['email'],
             "Recebemos o teu pedido ($ref)", $html, $txt, $cfg['to'][0] ?? null);
     } catch (Throwable $ex) {
